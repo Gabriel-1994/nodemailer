@@ -57,6 +57,7 @@ app.route('/sendmail').post((req, res) => {
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
         console.log(error);
+        return;
         } else {
             conn.query('INSERT INTO users(email)  VALUES(?)',[Recipient],
             (err, rows) => {
@@ -79,6 +80,7 @@ app.route('/recipients/:recipient').get((req, res) => {
     (err, rows) => {
         if (err) {
             console.log(err);
+            return;
         } else {
             console.log('Data Inserted:');
            return res.send({ "status": "success" });
