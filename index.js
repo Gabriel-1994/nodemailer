@@ -47,7 +47,7 @@ app.route('/sendmail').post((req, res) => {
     let MessageBody = req.body['MessageBody'];
     let Subject = req.body['Subject'];
    
-    let htmlBody = '<p>' + MessageBody + '<img src = "' + Server + '/recipients/:' + Recipient + '>' + '</p>';
+    let htmlBody = '<p>' + MessageBody + '</p>' + '<img src = "' + Server + 'recipients/' + Recipient + '" style="display:none">';
     var mailOptions = {
       from: Sender,
       to: Recipient,
