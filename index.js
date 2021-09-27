@@ -47,7 +47,7 @@ app.route('/sendmail').post((req, res) => {
     let MessageBody = req.body['MessageBody'];
     let Subject = req.body['Subject'];
    
-    let htmlBody = '<p>' + MessageBody + '</p>' + '<img src = "' + Server + '/recipients/' + Recipient + '" style="display:none">';
+    let htmlBody = '<p>' + MessageBody + '</p>' + '<img src = "' + Server + '/recipients/:' + Recipient + '" style="display:none">';
     var mailOptions = {
       from: Sender,
       to: Recipient,
@@ -72,7 +72,7 @@ app.route('/sendmail').post((req, res) => {
 })
 
 
-app.route('/recipients/recipient').get((req, res) => {
+app.route('/recipients/:recipient').get((req, res) => {
     var Recipient = req.params['recipient'];
     var date_ob = new Date().toISOString().slice(0, 19).replace('T', ' ');
     conn.query('UPDATE users SET opened = true, last_seen= ? WHERE email=?', [date_ob, Recipient],
