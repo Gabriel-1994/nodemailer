@@ -84,8 +84,7 @@ app.route('/recipients/:recipient').get((req, res) => {
             res.send({ "status": "success" });
         }
     });
-    res.send ({"time" : date_ob});
-    res.end();
+    return res.send ({"time" : date_ob});
 })
 
 
