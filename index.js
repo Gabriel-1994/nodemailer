@@ -69,6 +69,7 @@ app.route('/sendmail').post((req, res) => {
             });
         }
     });
+    res.end();
 })
 
 
