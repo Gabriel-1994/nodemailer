@@ -69,7 +69,6 @@ app.route('/sendmail').post((req, res) => {
             });
         }
     });
-    res.end();
 })
 
 
@@ -86,6 +85,7 @@ app.route('/recipients/:recipient').get((req, res) => {
         }
     });
     res.send ({"time" : date_ob});
+    res.end();
 })
 
 
