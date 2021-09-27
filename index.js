@@ -45,3 +45,48 @@ app.listen(process.env.PORT || 5000, () => {
     console.log("Server is listening...url: " + Server);
 });
 
+app.route('/sendmail').post((req, res) => {
+    let Sender = req.body['Sender'];
+    let Recipient = req.body['Recipient'];
+    let MessageBody = req.body['MessageBody'];
+    let Subject = req.body['Subject'];
+   
+    let htmlBody = '<p>' + MessageBody + '</p>' + '<img src = "' + Server + '/recipients/' + Recipient + '" style="display:none">';
+    var mailOptions = {
+      from: Sender,
+      to: Recipient,
+      subject: Subject,
+      html: htmlBody
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+        console.log(error);
+        } else {
+            conn.query('INSERT INTO users(email)  VALUES(?)',[Recipient],
+            (err, rows) => {
+                if (err) {
+                    throw err,
+                    console.log(err);
+                } else {
+                    res.send({ "status": "success" });
+                }
+            });
+        }
+    });
+})
+
+
+app.route('/recipients/:recipient').get((req, res) => {
+    var Recipient = req.params['recipient'];
+    var date_ob = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    conn.query('UPDATE recipients SET opened = true, lastseen= ? WHERE email=?', [date_ob, Recipient],
+    (err, rows) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Data Inserted:');
+            res.send({ "status": "success" });
+        }
+    });
+    res.send ({"time" : date_ob});
+})
