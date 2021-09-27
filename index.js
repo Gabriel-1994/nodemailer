@@ -79,7 +79,7 @@ app.route('/sendmail').post((req, res) => {
 app.route('/recipients/:recipient').get((req, res) => {
     var Recipient = req.params['recipient'];
     var date_ob = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    conn.query('UPDATE recipients SET opened = true, lastseen= ? WHERE email=?', [date_ob, Recipient],
+    conn.query('UPDATE recipients SET opened = true, last_seen= ? WHERE email=?', [date_ob, Recipient],
     (err, rows) => {
         if (err) {
             console.log(err);
