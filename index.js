@@ -13,7 +13,7 @@ app.use(cors());
 
 
 var conn = mysql.createConnection({
-    host: "sql6440476",
+    host: "sql6.freemysqlhosting.net",
     user: "sql6440476",
     password: "YxtF8iLck6",
     database: "sql6440476"
@@ -40,10 +40,6 @@ app.get('/', (req, res) => {
 });
 
 
-
-app.listen(process.env.PORT || 5000, () => {
-    console.log("Server is listening...url: " + Server);
-});
 
 app.route('/sendmail').post((req, res) => {
     let Sender = req.body['Sender'];
@@ -90,3 +86,8 @@ app.route('/recipients/:recipient').get((req, res) => {
     });
     res.send ({"time" : date_ob});
 })
+
+
+app.listen(process.env.PORT || 5000, () => {
+    console.log("Server is listening...url: " + Server);
+});
