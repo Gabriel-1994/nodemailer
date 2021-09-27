@@ -81,7 +81,7 @@ app.route('/recipients/:recipient').get((req, res) => {
             console.log(err);
         } else {
             console.log('Data Inserted:');
-            res.send({ "status": "success" });
+           return res.send({ "status": "success" });
         }
     });
     return res.send ({"time" : date_ob});
