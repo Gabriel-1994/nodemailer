@@ -4,7 +4,7 @@ const mysql = require('mysql'); //as we use a MySQL database
 const nodemailer = require('nodemailer'); //to send mails
 var cors = require('cors');
 
-const server = "https://myndlift-send-email.herokuapp.com/"
+const Server = "https://myndlift-send-email.herokuapp.com/"
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
