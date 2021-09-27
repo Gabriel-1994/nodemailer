@@ -64,7 +64,7 @@ app.route('/sendmail').post((req, res) => {
                     throw err,
                     console.log(err);
                 } else {
-                    res.send({ "status": "success" });
+                   return res.send({ "status": "success" });
                 }
             });
         }
