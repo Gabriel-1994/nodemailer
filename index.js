@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql'); //as we use a MySQL database
-const nodemailer = require('nodemailer'); //to send mails
+const mysql = require('mysql'); 
+const nodemailer = require('nodemailer'); 
 var cors = require('cors');
 
 const Server = "https://myndlift-send-email.herokuapp.com/"
@@ -34,14 +34,14 @@ let transporter = nodemailer.createTransport({
 
 app.get('/', (req, res) => {
     res.json({
-     "message": "Hi this is mail tracker node server",
+     "message": "Hello World! I am server",
      "url": Server
     });
 });
 
 
 
-app.route('/sendmail').post((req, res) => {
+app.route('/sendHelloEmail').post((req, res) => {
     let Sender = req.body['Sender'];
     let Recipient = req.body['Recipient'];
     let MessageBody = req.body['MessageBody'];
@@ -85,8 +85,22 @@ app.route('/recipients/:recipient').get((req, res) => {
             res.send({ "status": "success" });
         }
     });
-    //return res.send ({"time" : date_ob});
 })
+
+
+app.route('/report').get((req, res) => {
+    
+    conn.query('Select * from users where opened = false',
+    (err, rows) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Data Inserted:');
+            res.send(rows);
+        }
+    });    
+})
+
 
 
 app.listen(process.env.PORT || 5000, () => {
