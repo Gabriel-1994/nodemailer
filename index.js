@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql'); 
 const nodemailer = require('nodemailer'); 
 var cors = require('cors');
-require("dotenv").config();
+const config = require('./config.json');
 
 const Server = "https://myndlift-send-email.herokuapp.com/"
 
@@ -15,10 +15,10 @@ app.use(cors());
 
 
 var conn = mysql.createConnection({
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database
+    host: config.host,
+    user: config.user,
+    password: config.password,
+    database: config.database
 });
 
 let transporter = nodemailer.createTransport({
@@ -26,10 +26,10 @@ let transporter = nodemailer.createTransport({
     auth: {
       type: 'OAuth2',
       user: "gabriel.nalbandian94@gmail.com",
-      pass: "Bandi4434!!!",
-      clientId: "452361147036-ceojk2okp2oi89msre2mave0m9aa15ea.apps.googleusercontent.com",
-      clientSecret: "xupRMWFscsoRH78r1sOBnJKX",
-      refreshToken: "1//04fJiiFTpzRxcCgYIARAAGAQSNwF-L9IrgUSm9GN0TJig0OnLTHtapxJZOR5kzoT2n-rz0Zh0lmOhmruUG4H0ERENyhMtdsbGwDo"
+      pass: config.pass,
+      clientId: config.clientId,
+      clientSecret: config.clientSecret,
+      refreshToken: config.refreshToken
     }
 });
 
