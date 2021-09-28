@@ -57,7 +57,6 @@ app.route('/sendmail').post((req, res) => {
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
         console.log(error);
-        return;
         } else {
             conn.query('INSERT INTO users(email)  VALUES(?)',[Recipient],
             (err, rows) => {
@@ -65,12 +64,13 @@ app.route('/sendmail').post((req, res) => {
                     throw err,
                     console.log(err);
                 } else {
-                   return res.send({ "status": "success" });
+                   res.send({ "status": "success" });
                 }
             });
         }
     });
 })
+
 
 
 app.route('/recipients/:recipient').get((req, res) => {
@@ -80,13 +80,12 @@ app.route('/recipients/:recipient').get((req, res) => {
     (err, rows) => {
         if (err) {
             console.log(err);
-            return;
         } else {
             console.log('Data Inserted:');
-           return res.send({ "status": "success" });
+            res.send({ "status": "success" });
         }
     });
-    return res.send ({"time" : date_ob});
+    //return res.send ({"time" : date_ob});
 })
 
 
