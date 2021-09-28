@@ -7,6 +7,7 @@ require("dotenv").config();
 
 const Server = "https://myndlift-send-email.herokuapp.com/"
 
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -25,10 +26,10 @@ let transporter = nodemailer.createTransport({
     auth: {
       type: 'OAuth2',
       user: "gabriel.nalbandian94@gmail.com",
-      pass: process.env.pass,
-      clientId: process.env.clientId,
-      clientSecret: process.env.clientSecret,
-      refreshToken: process.env.refreshToken
+      pass: "Bandi4434!!!",
+      clientId: "452361147036-ceojk2okp2oi89msre2mave0m9aa15ea.apps.googleusercontent.com",
+      clientSecret: "xupRMWFscsoRH78r1sOBnJKX",
+      refreshToken: "1//04fJiiFTpzRxcCgYIARAAGAQSNwF-L9IrgUSm9GN0TJig0OnLTHtapxJZOR5kzoT2n-rz0Zh0lmOhmruUG4H0ERENyhMtdsbGwDo"
     }
 });
 
