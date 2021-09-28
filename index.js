@@ -28,7 +28,7 @@ let transporter = nodemailer.createTransport({
       pass: process.env.pass,
       clientId: process.env.clientId,
       clientSecret: process.env.clientSecret,
-      refreshToken: "1//04fJiiFTpzRxcCgYIARAAGAQSNwF-L9IrgUSm9GN0TJig0OnLTHtapxJZOR5kzoT2n-rz0Zh0lmOhmruUG4H0ERENyhMtdsbGwDo"
+      refreshToken: process.env.refreshToken
     }
 });
 
